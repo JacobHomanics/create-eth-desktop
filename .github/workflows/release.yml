@@ -25,14 +25,14 @@ jobs:
         with:
           p12-file-base64: ${{ secrets.APPLE_CERTIFICATE_BASE64 }}
           p12-password: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
-        if: ${{ secrets.APPLE_CERTIFICATE_BASE64 != '' }}
+        continue-on-error: true
       
       - name: Set up notarization
         run: |
           echo "APPLE_TEAM_ID=${{ secrets.APPLE_TEAM_ID }}" >> $GITHUB_ENV
           echo "APPLE_ID=${{ secrets.APPLE_ID }}" >> $GITHUB_ENV
           echo "APPLE_APP_SPECIFIC_PASSWORD=${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}" >> $GITHUB_ENV
-        if: ${{ secrets.APPLE_TEAM_ID != '' }}
+        continue-on-error: true
       
       - run: npm run dist:mac
         env:
