@@ -33,10 +33,7 @@
       "hardenedRuntime": true,
       "gatekeeperAssess": false,
       "entitlements": "build/entitlements.mac.plist",
-      "entitlementsInherit": "build/entitlements.mac.plist",
-      "notarize": {
-        "teamId": "$APPLE_TEAM_ID"
-      }
+      "entitlementsInherit": "build/entitlements.mac.plist"
     },
     "win": {
       "icon": "oafDdm4Y_400x400.jpg",

@@ -27,14 +27,16 @@ jobs:
           p12-password: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
         continue-on-error: true
       
-      - name: Set up notarization
+      - name: Build macOS app
         run: |
-          echo "APPLE_TEAM_ID=${{ secrets.APPLE_TEAM_ID }}" >> $GITHUB_ENV
-          echo "APPLE_ID=${{ secrets.APPLE_ID }}" >> $GITHUB_ENV
-          echo "APPLE_APP_SPECIFIC_PASSWORD=${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}" >> $GITHUB_ENV
-        continue-on-error: true
-      
-      - run: npm run dist:mac
+          # Only enable notarization if all required secrets are present
+          if [ -n "${{ secrets.APPLE_TEAM_ID }}" ] && [ -n "${{ secrets.APPLE_ID }}" ] && [ -n "${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}" ]; then
+            echo "Building with notarization..."
+            npm run dist:mac -- --config.mac.notarize.teamId="${{ secrets.APPLE_TEAM_ID }}"
+          else
+            echo "Notarization credentials not set, building without notarization..."
+            npm run dist:mac -- --config.mac.notarize=null
+          fi
         env:
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
           APPLE_ID: ${{ secrets.APPLE_ID }}
