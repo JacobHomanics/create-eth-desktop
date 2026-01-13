@@ -18,7 +18,27 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      
+      # Code signing and notarization (if certificates are available)
+      - name: Import code signing certificate
+        uses: apple-actions/import-codesign-certs@v2
+        with:
+          p12-file-base64: ${{ secrets.APPLE_CERTIFICATE_BASE64 }}
+          p12-password: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+        if: ${{ secrets.APPLE_CERTIFICATE_BASE64 != '' }}
+      
+      - name: Set up notarization
+        run: |
+          echo "APPLE_TEAM_ID=${{ secrets.APPLE_TEAM_ID }}" >> $GITHUB_ENV
+          echo "APPLE_ID=${{ secrets.APPLE_ID }}" >> $GITHUB_ENV
+          echo "APPLE_APP_SPECIFIC_PASSWORD=${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}" >> $GITHUB_ENV
+        if: ${{ secrets.APPLE_TEAM_ID != '' }}
+      
       - run: npm run dist:mac
+        env:
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
 
       - name: Upload mac artifacts to GitHub Release
         uses: softprops/action-gh-release@v2
