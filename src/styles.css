@@ -1,0 +1,68 @@
+:root { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
+body { margin: 0; background: #0b0c10; color: #e7e7e7; }
+.wrap { padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.header h1 { margin: 0; font-size: 22px; }
+.header p { margin: 6px 0 0; opacity: 0.8; }
+.header-top { display: flex; align-items: center; gap: 12px; }
+.header-top h1 { margin: 0; }
+.back-button { padding: 8px 12px; border-radius: 8px; border: 1px solid #2a2f3a; background: #1b2130; color: #e7e7e7; cursor: pointer; font-size: 14px; }
+.back-button:hover:not(:disabled) { background: #252b3a; }
+.back-button:disabled { opacity: 0.6; cursor: not-allowed; }
+.controls { display: flex; flex-direction: column; gap: 10px; background: #12141a; padding: 12px; border-radius: 12px; }
+.row { display: flex; align-items: center; gap: 10px; }
+.row label { width: 110px; opacity: 0.9; }
+.path { flex: 1; opacity: 0.85; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+input { flex: 1; padding: 10px; border-radius: 10px; border: 1px solid #2a2f3a; background: #0f1117; color: #e7e7e7; }
+select.select { flex: 1; padding: 10px; border-radius: 10px; border: 1px solid #2a2f3a; background: #0f1117; color: #e7e7e7; }
+button { padding: 10px 12px; border-radius: 10px; border: 1px solid #2a2f3a; background: #1b2130; color: #e7e7e7; cursor: pointer; }
+button:hover:not(:disabled) { background: #252b3a; }
+button:disabled { opacity: 0.6; cursor: not-allowed; }
+.create-button { background: #2d4a5e; border-color: #3a5f7a; }
+.create-button:hover:not(:disabled) { background: #355a72; }
+.extensions { flex: 1; display: flex; flex-wrap: wrap; gap: 8px; }
+.checkbox-label { display: flex; align-items: center; gap: 6px; cursor: pointer; opacity: 0.9; }
+.checkbox-label input[type="checkbox"],
+.checkbox-label input[type="radio"] { width: auto; flex: none; cursor: pointer; margin: 0; }
+.checkbox-label:hover { opacity: 1; }
+.small { font-size: 12px; opacity: 0.85; }
+.terminal { background: #05060a; border: 1px solid #202636; border-radius: 12px; padding: 12px; height: 300px; overflow: auto; }
+pre { margin: 0; white-space: pre-wrap; word-wrap: break-word; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; }
+code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 8px; }
+
+/* Projects list styles */
+.projects-section { display: flex; flex-direction: column; gap: 16px; }
+.projects-header { display: flex; justify-content: space-between; align-items: center; }
+.projects-header h2 { margin: 0; font-size: 20px; }
+.loading { padding: 40px; text-align: center; opacity: 0.7; }
+.empty-state { padding: 60px 40px; text-align: center; background: #12141a; border-radius: 12px; border: 1px solid #2a2f3a; }
+.empty-state p { margin: 0 0 20px; opacity: 0.8; }
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+.project-card { background: #12141a; border: 1px solid #2a2f3a; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 12px; transition: border-color 0.2s; }
+.project-card:hover { border-color: #3a4a5a; }
+.project-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.project-card-header h3 { margin: 0; font-size: 18px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+.delete-button { padding: 4px 10px; border-radius: 6px; border: 1px solid #3a2a2a; background: #2a1f1f; color: #ff6b6b; cursor: pointer; font-size: 20px; line-height: 1; min-width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; }
+.delete-button:hover { background: #3a2f2f; border-color: #4a3a3a; }
+.project-card-body { display: flex; flex-direction: column; gap: 8px; }
+.project-info { display: flex; flex-direction: column; gap: 6px; }
+.project-info-row { display: flex; gap: 8px; font-size: 13px; }
+.project-info-row .label { opacity: 0.7; min-width: 70px; }
+.project-info-row .value { opacity: 0.9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+
+/* Loading spinner */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(231, 231, 231, 0.3);
+  border-top-color: #e7e7e7;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
