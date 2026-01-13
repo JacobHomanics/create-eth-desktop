@@ -24,10 +24,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist-electron/*.dmg
-            dist-electron/*.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            dist-electron/**/*.dmg
+            dist-electron/**/*.zip
 
   win:
     runs-on: windows-latest
@@ -44,10 +42,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist-electron/*.exe
-            dist-electron/*.msi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            dist-electron/**/*.exe
+            dist-electron/**/*.msi
 
   linux:
     runs-on: ubuntu-latest
@@ -64,7 +60,5 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist-electron/*.AppImage
-            dist-electron/*.deb
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            dist-electron/**/*.AppImage
+            dist-electron/**/*.deb
